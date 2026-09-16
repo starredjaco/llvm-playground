@@ -42,7 +42,7 @@ static const char *tokenTypeToStr(int type){
     return "Token type not defined";
 }
 
-char *tokenToStr(tokenStruct *token){
+static char *tokenToStr(tokenStruct *token){
     switch(token->returnedInt){
         case TOKEN_EOF: return "EOF";
         case TOKEN_TINT: return "int";
