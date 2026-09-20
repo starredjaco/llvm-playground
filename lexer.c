@@ -35,6 +35,7 @@ static const char *tokenTypeToStr(int type){
         case TOKEN_SUB: return "TOKEN_SUB";
         case TOKEN_MUL: return "TOKEN_MUL";
         case TOKEN_DIV: return "TOKEN_DIV";
+        case TOKEN_EQUALS: return "TOKEN_EQUALS";
         // case : return "";
         // case : return "";
         // case : return "";
@@ -64,6 +65,7 @@ static char *tokenToStr(tokenStruct *token){
         case TOKEN_DIV: return "/";
         case TOKEN_IDENTIFIER: return token->identifierStr;
         case TOKEN_INT: return token->identifierStr;
+        case TOKEN_EQUALS: return "=";
         // case : return "";
         // case : return "";
         // case : return "";
@@ -84,8 +86,14 @@ char *tokenPrint(tokenStruct *token){
 static int next(){
     int c;
     c = fgetc(Infile);
-    if('\n' == c)
+    CurrentTokenLine = Line;
+    CurrentTokenPos = CharacterPos;
+    if('\n' == c){
         Line++;
+        CharacterPos = 0;
+    }else{
+        CharacterPos++;
+    }
     return c;
 }
 
@@ -213,6 +221,7 @@ int getToken(tokenStruct *t){
         case '-': return TOKEN_SUB;
         case '*': return TOKEN_MUL;
         case '/': return TOKEN_DIV;
+        case '=': return TOKEN_EQUALS;
         default: return thisChar;
     }
 

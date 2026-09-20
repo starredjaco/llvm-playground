@@ -41,6 +41,7 @@ typedef struct TOKEN_STRUCT
 
 
         // primary
+        TOKEN_EQUALS = -253,
         TOKEN_IDENTIFIER = -254,
         TOKEN_INT = -255
 

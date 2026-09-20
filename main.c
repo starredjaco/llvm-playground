@@ -9,6 +9,7 @@
 
 static void init(){
     Line = 1;
+    CharacterPos = 0;
 }
 static void usage(char *prog){
     fprintf(stderr, "Usage %s infile.ie\n", prog);
@@ -37,6 +38,7 @@ int main(int argc, char *argv[])
         t->returnedInt = getToken(t);
         char *toPrint = tokenPrint(t);
         printf("%s\n", toPrint);
+        // printf("Line Number: %d\tCharacter Position: %d\n",  CurrentTokenLine, CurrentTokenPos);
     }
 
     return 0;
