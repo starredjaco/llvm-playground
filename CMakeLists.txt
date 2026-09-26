@@ -28,7 +28,7 @@ enable_testing()
 
 file(GLOB TEST_INPUTS CONFIGURE_DEPENDS
           "${CMAKE_CURRENT_SOURCE_DIR}/tests/*.ie")
-
+set(TEST_FILES "")
 foreach(INPUT_FILE ${TEST_INPUTS})
   get_filename_component(TEST_NAME ${INPUT_FILE} NAME_WE)
 
@@ -40,17 +40,20 @@ foreach(INPUT_FILE ${TEST_INPUTS})
   add_test(NAME RunLexer_${TEST_NAME}
   COMMAND $<TARGET_FILE:lexer_test_runner> ${INPUT_FILE} ${ACTUAL_FILE})
 
+  list(APPEND ALL_ACTUAL_FILES ${ACTUAL_FILE})
+  # add these files for cleanup in the main clean too
+  set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_CLEAN_FILES "${ACTUAL_FILE}")
+
   # 2. Compare the actual output file with the expected output file
   add_test(NAME Compare_${TEST_NAME}
     COMMAND ${CMAKE_COMMAND} -E compare_files ${EXPECTED_FILE} ${ACTUAL_FILE})
 
   set_tests_properties(Compare_${TEST_NAME}
     PROPERTIES DEPENDS RunLexer_${TEST_NAME})
-
-  # 3. Clean up the temporary .actual build file regardless of pass/fail
-  add_test(NAME Cleanup_${TEST_NAME}
-    COMMAND ${CMAKE_COMMAND} -E remove ${ACTUAL_FILE})
-
-  set_tests_properties(Cleanup_${TEST_NAME}
-    PROPERTIES DEPENDS Compare_${TEST_NAME})
 endforeach() # ctest --test-dir build --output-on-failure
+
+# custom clean-tests
+add_custom_target(clean-tests
+    COMMAND ${CMAKE_COMMAND} -E remove ${ALL_ACTUAL_FILES}
+    COMMENT "Cleaning test .actual files..."
+)
