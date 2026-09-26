@@ -1,0 +1,6 @@
+<type=`TOKEN_TFLOAT`, intType=`-6`, value=`float`>
+<type=`TOKEN_IDENTIFIER`, intType=`-254`, value=`something`>
+<type=`TOKEN_EQUALS`, intType=`-253`, value=`=`>
+<type=`TOKEN_INT`, intType=`-255`, value=`9.03`>
+<type=`TOKEN_SCOLON`, intType=`-13`, value=`;`>
+<type=`TOKEN_EOF`, intType=`-1`, value=`EOF`>

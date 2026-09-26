@@ -18,10 +18,18 @@ static void usage(char *prog){
 
 int main(int argc, char *argv[])
 {
-    if(argc != 2){
+    if(argc < 2){
         usage(argv[0]);
         return 1;
     }
+
+    if (argc >= 3) {
+        if (freopen(argv[2], "w", stdout) == NULL) {
+            perror("Failed to open output file");
+            return 1;
+        }
+    }
+
     init();
     // printf("%d\n", Line);
     if ((Infile = fopen(argv[1], "r")) == NULL) {

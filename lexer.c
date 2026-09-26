@@ -1,6 +1,6 @@
-#include "include/data.h"
-#include "include/defs.h"
-#include "include/decls.h"
+#include "data.h"
+#include "defs.h"
+#include "decls.h"
 #include <ctype.h>
 #include <stdlib.h>
 

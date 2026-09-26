@@ -1,0 +1,10 @@
+<type=`TOKEN_TINT`, intType=`-2`, value=`int`>
+<type=`TOKEN_IDENTIFIER`, intType=`-254`, value=`main`>
+<type=`TOKEN_BRLEFT`, intType=`-9`, value=`(`>
+<type=`TOKEN_BRRIGHT`, intType=`-10`, value=`)`>
+<type=`TOKEN_BCLEFT`, intType=`-11`, value=`{`>
+<type=`TOKEN_RETURN`, intType=`-14`, value=`return`>
+<type=`TOKEN_INT`, intType=`-255`, value=`0.00`>
+<type=`TOKEN_SCOLON`, intType=`-13`, value=`;`>
+<type=`TOKEN_BCRIGHT`, intType=`-12`, value=`}`>
+<type=`TOKEN_EOF`, intType=`-1`, value=`EOF`>
